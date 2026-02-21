@@ -1,0 +1,9 @@
+tools:
+  kubectl
+  cf
+  gardenctl
+  yq
+  helm
+  jq
+  k9s
+  git
