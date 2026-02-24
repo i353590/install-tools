@@ -129,3 +129,31 @@ Or restart the terminal session.
 * The setup is intended for development environments interacting with Kubernetes, Cloud Foundry, Gardener, and related SAP BTP runtimes.
 
 ---
+## 🚀 **Request a CLI Tool**
+
+Need a CLI tool added to the installer?
+
+1. Navigate to the **Issues** tab in this repository
+2. Click on **New Issue**
+3. Select **CLI Tool Request**
+4. Enter the **Tool Name**
+
+Submit your request.
+
+---
+
+## 🛠️ **Provide Setup Feedback**
+
+Facing any issues during setup or have suggestions for improvement?
+
+You can raise a **Setup Feedback** issue to report:
+
+* Installation issues
+* Missing tools
+* Setup friction
+* Suggestions for improvement
+
+
+
+
+Submit
