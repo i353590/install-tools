@@ -2,7 +2,6 @@
 
 set -e
 
-# -------- Detect OS --------
 OS="$(uname)"
 
 # -------- Install Homebrew if missing --------
@@ -16,15 +15,32 @@ then
     fi
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-    if [[ "$OS" == "Linux" ]]; then
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    else
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
 fi
+
+# -------- Setup Brew PATH (for current + future sessions) --------
+if [[ "$OS" == "Linux" ]]; then
+    BREW_ENV='eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+    echo $BREW_ENV >> ~/.bashrc
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else
+    BREW_ENV='eval "$(/opt/homebrew/bin/brew shellenv)"'
+    echo $BREW_ENV >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# -------- CF Tap --------
+brew tap cloudfoundry/tap || true
+
+# -------- Install If Missing --------
+install_if_missing () {
+  if command -v $1 &> /dev/null
+  then
+    echo "$1 already exists. Skipping..."
+  else
+    echo "Installing $1..."
+    brew install $2
+  fi
+}
 
 echo ""
 echo "Available Tools to Install:"
@@ -36,6 +52,7 @@ echo "5) helm"
 echo "6) jq"
 echo "7) k9s"
 echo "8) git"
+echo "9) aws-cli"
 echo ""
 
 read -p "Enter tool numbers (comma separated): " choices
@@ -44,17 +61,19 @@ IFS=',' read -ra SELECTED <<< "$choices"
 
 for i in "${SELECTED[@]}"; do
   case $i in
-    1) brew install kubectl ;;
-    2) brew install cloudfoundry/tap/cf-cli ;;
-    3) brew install gardenctl ;;
-    4) brew install yq ;;
-    5) brew install helm ;;
-    6) brew install jq ;;
-    7) brew install k9s ;;
-    8) brew install git ;;
+    1) install_if_missing kubectl kubectl ;;
+    2) install_if_missing cf cf-cli ;;
+    3) install_if_missing gardenctl gardenctl ;;
+    4) install_if_missing yq yq ;;
+    5) install_if_missing helm helm ;;
+    6) install_if_missing jq jq ;;
+    7) install_if_missing k9s k9s ;;
+    8) install_if_missing git git ;;
+    9) install_if_missing aws awscli ;;
     *) echo "Invalid option: $i" ;;
   esac
 done
 
 echo ""
 echo "Installation Complete."
+echo "If commands don't work immediately, run: source ~/.bashrc"
