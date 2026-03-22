@@ -166,5 +166,10 @@ You can raise a **Setup Feedback** issue to report:
 
 
 
+Click Submit
 
-Submit
+---
+
+## 🚀 **Announcements**
+
+We are now integrated with Concourse! Now get updates when we get better :P
