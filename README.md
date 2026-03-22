@@ -169,7 +169,8 @@ You can raise a **Setup Feedback** issue to report:
 Click Submit
 
 ---
-
+<!--
 ## 🚀 **Announcements**
 
 We are now integrated with Concourse! Now get updates when we make changes. Stay Tuned!
+-->
