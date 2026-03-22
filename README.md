@@ -2,7 +2,7 @@
 
 ---
 
-## 🧰 Tool Name
+## 🧰 Tool Name --
 
 ### **ASSET**
 
