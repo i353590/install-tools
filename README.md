@@ -172,4 +172,4 @@ Click Submit
 
 ## 🚀 **Announcements**
 
-We are now integrated with Concourse! Now get updates when we get better :P
+We are now integrated with Concourse! Now get updates when we make changes. Stay Tuned!
